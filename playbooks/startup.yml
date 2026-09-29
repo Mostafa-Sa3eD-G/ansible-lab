@@ -1,0 +1,15 @@
+---
+- name: update apt
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: install packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+      - nginx
+      - curl
+      - unzip
+      - git
+      - htop

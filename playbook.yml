@@ -1,0 +1,41 @@
+---
+- name: deploy nginx
+  hosts: web
+  become: true
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    # - name: startup playbook
+    #   ansible.builtin.import_tasks: playbooks/startup.yml
+    
+    - name: site deployment
+      ansible.builtin.import_tasks:
+        playbooks/site.yml
+    # - name: install packages
+    #   ansible.builtin.apt:
+    #     name: "{{ item }}"
+    #     state: present
+    #   loop:
+    #     - nginx
+    #     - curl
+    #     - unzip
+    #     - git
+    #     - htop
+    
+    # - name: start nginx
+    #   ansible.builtin.service:
+    #     name: nginx
+    #     state: started
+    #     enabled: true
+    
+    # - name: Create HTML Page
+    #   ansible.builtin.copy:
+    #     content: |
+    #       <h1>Welcome to {{ app_name }}</h1>
+    #       <p>Deployed using Ansible!</p>
+    #     dest: /var/www/html/index.html
+    #     mode: '0644'
+
+    
